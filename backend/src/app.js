@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
     credentials:true,
-    origin : "https://instagram-5x3c.vercel.app"
+    origin : "https://instagram-fa.vercel.app"
 }))
 
 app.use('/api/auth',authRouter)
