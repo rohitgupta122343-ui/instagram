@@ -1,9 +1,9 @@
 
-import axios from 'axios'
+import axios  from 'axios'
 
 const api = axios.create({
-    baseURL: "http://localhost:3000/api/auth",
-    withCredentials: true,
+    baseURL : 'http://localhost:3000/api/auth',
+    withCredentials : true
 })
 
 export async function login(username,password){
@@ -16,18 +16,20 @@ export async function login(username,password){
 
 }
 
-export async function register(username,email,password){
 
-    const respones = await api.post('/register',{
+export const register = (username,email,password)=>{
+
+    const res = api.post('/register',{
         username,email,password
     })
 
-    return respones
+    return res
 }
 
-export async function getme() {
+export const getMe = ()=>{
     
-    const respones = await axios.get('http://localhost:3000/api/auth/get-me')
+    const res = api.get('/get-me')
 
-    return respones
+    return res
+    
 }

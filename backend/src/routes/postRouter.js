@@ -14,4 +14,8 @@ postRouter.get('/details/:postid',isLoggedIn,postController.postDetails)
 
 postRouter.post('/like/:postId',isLoggedIn,postController.likePostController)
 
+postRouter.post('/unlike/:postId',isLoggedIn,postController.unlikePostController)
+
+postRouter.get('/feed',isLoggedIn,postController.getFeedPostController)
+
 module.exports = postRouter

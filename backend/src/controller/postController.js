@@ -12,16 +12,13 @@ const imagekit = Imagekit({
 async function postCreateController(req,res){
 
   
-  
-  
-    
     const file = await imagekit.files.upload({
         file : await toFile(Buffer.from(req.file.buffer),'file'),
         fileName : "test",
         folder : "instagram-clone-post"
     })
 
-   
+     
     
 
    const post = await postModel.create({
@@ -104,9 +101,60 @@ async function likePostController(req,res){
 
 }
 
+async function unlikePostController(req,res){
+
+    const postId = req.params.postId
+    const username = req.user.username
+
+    const isLiked = await likeModel.findOne({
+        post : postId,
+        user : username
+    })
+
+    if(!isLiked){
+        return res.status(400).json({
+            message : "post didn't like"
+        })
+    }
+
+    await likeModel.findOneAndDelete({_id: isLiked._id})
+
+    return res.json({
+        message : "post unlike sucessfully"
+    })
+}
+
+async function getFeedPostController(req,res){
+
+
+    const user = req.user
+
+    const posts = await Promise.all((await postModel.find().populate("user").lean())
+    .map(async(post)=>{
+
+        const isLiked = await likeModel.findOne({
+            user : user.username,
+            post : post._id
+        })
+
+     post.isLiked = Boolean(isLiked)
+
+     return post
+
+
+    }))
+
+    res.status(201).json({
+        message : "All the Post",
+        posts
+    })
+}
+
 module.exports = {
     postCreateController,
     getPostController,
     postDetails,
-    likePostController
+    likePostController,
+    unlikePostController,
+    getFeedPostController
 }
