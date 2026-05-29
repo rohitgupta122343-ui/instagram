@@ -82,6 +82,7 @@ async function loginController(req,res){
     res.cookie("token",token);
 
     res.status(201).json({
+        message:"login sucessfully",
         user:{
             username:user.username,
             email:user.email,
