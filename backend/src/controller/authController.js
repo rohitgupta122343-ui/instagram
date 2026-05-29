@@ -119,6 +119,15 @@ async function getmeController(req,res){
     
 }
 
+async function logoutController(req,res){
+
+    res.clearCookie("token")
+
+    res.status(200).json({
+        message : "logout sucessfully"
+    })
+}
+
 module.exports = {
-    registerContoller, loginController,getmeController
+    registerContoller, loginController,getmeController,logoutController
 }

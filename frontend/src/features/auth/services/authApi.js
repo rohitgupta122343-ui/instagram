@@ -33,3 +33,10 @@ export const getMe = ()=>{
     return res
     
 }
+
+export const logout = ()=>{
+    
+    const res = api.delete('/logout')
+
+    return res
+}

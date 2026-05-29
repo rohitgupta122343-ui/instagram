@@ -5,23 +5,31 @@ import Post from '../components/Post'
 import { usePost } from '../hooks/usePost'
 import Nav from '../../shared/components/Nav'
 import image from  '../../../assets/images.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../auth/hook/useAuth'
 
 const Feed = () => {
-
+    const navigate = useNavigate()
     const {feed,handleGetFeed,loading,handleLike,handleUnLike} = usePost()
 
+    
+    
     useEffect(()=>{
         handleGetFeed()
     },[])
-
-     
 
     if(loading || !feed){
         return <main><h1>Feed is Loding...</h1></main>
     }
 
+   
 
+    const {handlelogout} = useAuth()
+
+    const submited = () =>{
+        handlelogout()
+        navigate('/login')
+    }
     
 
   return (
@@ -35,13 +43,14 @@ const Feed = () => {
             })}
         </div>
 
+        <button onClick={()=>{submited()}} className='logout'>logout</button>
+
         <Link to={'/profile'}>
         <div className='get-me'>
             <img src={image} alt="" />
             <p className='username'>username</p>
-            
         </div>
-        
+            
         </Link>
        
     </div>

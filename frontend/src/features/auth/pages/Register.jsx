@@ -34,9 +34,9 @@ const register = () => {
      <main>
         <div className="form-container">
             <h1>Register</h1>
-            <form onSubmit={submiteHandler} autoComplete='off'>
+            <form onSubmit={submiteHandler}>
               <input onChange={(e)=>{setusername(e.target.value)}}  type="text" name='username' placeholder='username' />
-                <input onChange={(e)=>{setemail(e.target.value)}}  type="text" name='username' placeholder='username' />
+                <input onChange={(e)=>{setemail(e.target.value)}}  type="text" name='email' placeholder='email' />
                 <input onChange={(e)=>{setpassword(e.target.value)}} type="password" name='password' placeholder='password' />
                 <button>Login</button> 
             </form>

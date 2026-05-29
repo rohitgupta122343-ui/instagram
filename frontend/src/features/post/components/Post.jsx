@@ -17,9 +17,9 @@ console.log("POST:", post);
                <div className='nav'>
                  <div className="user">
                     <div className='img-wrap'>
-                        <img src= {user.profileImage} alt="" />
+                        <img src= {user?.profileImage} alt="" />
                     </div>
-                    <p>{user.username}</p>
+                    <p>{user?.username}</p>
 
                         
 

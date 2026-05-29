@@ -1,7 +1,7 @@
 
 import { useContext } from "react";
 import { AuthContext } from "../authContext";
-import { login,register } from "../services/authApi";
+import { login,register,logout } from "../services/authApi";
 
 export function useAuth (){   
 
@@ -28,6 +28,13 @@ export function useAuth (){
     setloading(false)
    }
 
-   return {user,loading,handleLogin,handleRegister}
+   const handlelogout = async()=>{
+   setloading(true)
+     const res = await logout()
+     setuser(null)
+     setloading(false)
+   }
+
+   return {user,loading,handleLogin,handleRegister,handlelogout}
     
 }

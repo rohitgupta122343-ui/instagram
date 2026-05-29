@@ -47,6 +47,7 @@ const Profile = () => {
       <div className="profile-actions">
         <button>Edit Profile</button>
         <button>View Archive</button>
+        <button>Log Out</button>
       </div>
 
     </div>

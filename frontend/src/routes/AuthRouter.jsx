@@ -6,13 +6,14 @@ import Register from '../features/auth/pages/register'
 import Feed from '../features/post/pages/Feed'
 import CreatePost from '../features/post/pages/CreatePost'
 import Profile from '../features/users/pages/profile'
+import ProtectedRoute from '../features/auth/components/ProtectedRoute'
 
 const AuthRouter = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Feed/>}></Route>
+            <Route path='/' element={<ProtectedRoute> <Feed/> </ProtectedRoute>}></Route>
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
             <Route path='/create-post' element={<CreatePost/>}></Route>
